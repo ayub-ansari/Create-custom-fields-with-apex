@@ -4,7 +4,8 @@ String objectapiname = 'Content_Item__c';//replace with your object name
 String fieldapiname = 'Country_Name';//replace with your field name
 String fieldlabel = 'Country_Name';//replace with your field label
 String fielddescription = 'Country Name';//replace with your field label
-HttpRequest requestinside = createHttpRequest(, 'POST');
+
+HttpRequest requestinside = new HttpRequest();
 requestinside.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
 requestinside.setHeader('Content-Type', 'application/json');
 requestinside.setEndpoint(URL.getSalesforceBaseUrl().toExternalForm()+'/services/data/v41.0/tooling/sobjects/CustomField/');
@@ -16,7 +17,7 @@ fieldDef += '"FullName" : "'+objectapiname+'.'+fieldapiname+'__c"}';
 system.debug(fieldDef);
 requestinside.setBody(fieldDef);
 HTTPResponse res = http.send(requestinside);
-System.debug(res.getBody())
+System.debug(res.getBody());
 ~~~~
 
 ## Multiple Fields Creation:
@@ -28,7 +29,8 @@ for(){
   String fieldapiname = 'Country_Name';//replace with your field name
   String fieldlabel = 'Country_Name';//replace with your field label
   String fielddescription = 'Country Name';//replace with your field label
-  HttpRequest requestinside = createHttpRequest(, 'POST');
+
+  HttpRequest requestinside = new HttpRequest();
   requestinside.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
   requestinside.setHeader('Content-Type', 'application/json');
   requestinside.setEndpoint(URL.getSalesforceBaseUrl().toExternalForm()+'/services/data/v41.0/tooling/sobjects/CustomField/');
@@ -40,7 +42,7 @@ for(){
   system.debug(fieldDef);
   requestinside.setBody(fieldDef);
   HTTPResponse res = http.send(requestinside);
-  System.debug(res.getBody())
+  System.debug(res.getBody());
 
 }
 ~~~
